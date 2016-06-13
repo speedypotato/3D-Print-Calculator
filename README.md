@@ -14,6 +14,8 @@ ToDo List:
  - Config file creation if files do not exist.
  - Printer Depreciation calculation?
 
+CHANGELOG
+
 v2.1.0 release 2016/6/12
  - First major revision.  3 .txt configuration files now.
  - Config.txt: General config which applies throughout the whole program.  Handles electricity rate, Minimum print price, and Profit multiplier.
