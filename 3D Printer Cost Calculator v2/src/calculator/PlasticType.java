@@ -1,5 +1,10 @@
 package calculator;
 
+/**
+ * Simulates Filament
+ * @author SomeTechNoob
+ * @version 2.1.0
+ */
 public class PlasticType implements Comparable {
 	private String filamentName;
 	private double filamentDensity;
@@ -99,15 +104,13 @@ public class PlasticType implements Comparable {
 	 * @return if the filaments have the same name
 	 */
 	public boolean equals(PlasticType that) {
-		if (this.compareTo(that) == 0) {
-			return true;
-		} else {
-			return false;
-		}
+		if (this.compareTo(that) == 0) return true;
+		else return false;
 	}
 	
 	/**
 	 * Simply returns a String of filament data
+	 * @return a string of filament data
 	 */
 	public String toString() {
 		String s = filamentName + ", " + filamentDensity + "g/cm^3, $" + costPerKilogram + "/kg, " + filamentDiameter + "mm";

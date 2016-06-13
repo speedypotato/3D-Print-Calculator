@@ -1,0 +1,2 @@
+Electricity Rate(in $/kWh), Minimum Print Price(in $), Profit Multiplier
+0.1559, 2, 2

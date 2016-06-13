@@ -1,0 +1,3 @@
+Printer Name, Power Consumption(in Watts)
+SmartFriendz SmartRapCore, 430
+Modded Printrbot Simple, 220

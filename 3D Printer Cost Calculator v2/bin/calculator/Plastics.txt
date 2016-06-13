@@ -1,6 +1,6 @@
 Filament Name,Filament Density(g/cm^3),Filament Cost(per kg),Filament Diameter(mm)
 1.75mm PLA, 1.210, 25, 1.75
 1.75mm ABS, 1.060, 25, 1.75
-1.75mm NinjaFlex, 1.2, 104, 1.75
 1.75mm PETG, 1.38, 26, 1.75
+1.75mm NinjaFlex, 1.2, 104, 1.75
 1.75mm Taulman Nylon 230, 1.14, 46.30, 1.75
