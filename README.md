@@ -1,7 +1,7 @@
 # 3D-Print-Calculator
 by SomeTechNoob/SomePrintrNoob/SpeedyPotato.
 
-A simple 3D print calculator.  I wanted to improve on my simple 3D print cost calculator program which I have been using privately.
+A simple 3D print calculator.  I wanted to improve on my simple 3D print cost calculator program which I have been using privately.  I know most slicers have this built in, but personally I use Repetier-Host which does not have any sort of cost calculation built in.  This program also factors in electricity costs, which while are minute, are a nice addition.
 
 Instructions for the newbs:
  1. Download this repository by clicking the big green button.
