@@ -1,4 +1,5 @@
 # 3D-Print-Calculator
+by SomeTechNoob/SomePrintrNoob/SpeedyPotato.
 
 A simple 3D print calculator.  I wanted to improve on my simple 3D print cost calculator program which I have been using privately.
 
