@@ -21,6 +21,7 @@ v2.1.0 release 2016/6/12
  - Config.txt: General config which applies throughout the whole program.  Handles electricity rate, Minimum print price, and Profit multiplier.
  - Printers.txt: You can now add multiple printers with respective wattages.  Added in a similar way to filaments.
  - Plastics.txt: Should remain unchanged.
+ - Changed default print multiplier and minimum print price from 3 to 2.  Just testing to ensure calculations still worked.
 
 v2.0.0 release 2016/6/10
  - First release.  Re-written from scratch.
