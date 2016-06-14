@@ -11,6 +11,7 @@ Instructions for the newbs:
  5. Run Runner.bat!  Yay!  You will need to slice the parts in your slicer first, then input data as requested.
 
 ToDo List:
+ - Cost calculation based on weight.  Probably going to be a setting between weight and length in Config.txt.
  - Config file creation if files do not exist.
  - Printer Depreciation calculation?
 
