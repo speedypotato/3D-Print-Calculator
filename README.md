@@ -18,6 +18,7 @@ ToDo List:
  - Graphical User Interface?  Might be a bit down the pipeline.
 
 CHANGELOG
+
 v2.1.1 release 2016/6/21
 - You can now can calculate costs based on weight(g) or length(mm).  You can change this option in Config.txt.  replace "length" with "weight" or vice versa.
 
