@@ -5,7 +5,7 @@ A simple 3D print calculator.  I wanted to improve on my simple 3D print cost ca
 
 Instructions for the newbs:
  1. Download this repository by clicking the big green button.
- 2. Extract 3D Print Calculator v2.1.0.zip.  The files in this archive are all you need to configure and run.
+ 2. Extract 3D Print Calculator v2.1.1.zip.  The files in this archive are all you need to configure and run.
  3. Customize general settings in Config.txt.  These are global, meaning that the settings in this file are used throughout the whole program.  Search up the electricity rate in your area, and customize additional costs and multipliers.
  4. Customize printers and plastics in the text files.  Follow the format listed in the first line of the text file.  You can add as many printers and filaments as you want.
  5. Run Runner.bat!  Yay!  You will need to slice the parts in your slicer first, then input data as requested.
