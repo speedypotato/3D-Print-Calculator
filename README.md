@@ -11,11 +11,15 @@ Instructions for the newbs:
  5. Run Runner.bat!  Yay!  You will need to slice the parts in your slicer first, then input data as requested.
 
 ToDo List:
- - Cost calculation based on weight.  Probably going to be a setting between weight and length in Config.txt.
  - Config file creation if files do not exist.
+ - Unit customization
  - Printer Depreciation calculation?
+ - GCode Analysis?  Might be a bit down the pipeline.
+ - Graphical User Interface?  Might be a bit down the pipeline.
 
 CHANGELOG
+v2.1.1 release 2016/6/21
+- You can now can calculate costs based on weight(g) or length(mm).  You can change this option in Config.txt.  replace "length" with "weight" or vice versa.
 
 v2.1.0 release 2016/6/12
  - First major revision.  3 .txt configuration files now.
