@@ -6,7 +6,7 @@ import java.io.*;
 /**
  * Computes the cost of a 3D print
  * @author SomeTechNoob
- * @version 2.1.0
+ * @version 2.1.1
  */
 public class CalculatorRunner {
 	public static final double ONE_KILO = 1000;
@@ -14,6 +14,7 @@ public class CalculatorRunner {
 	private double electricityRate;
 	private double minPrintPrice;
 	private double profitMultiplier;
+	private String calculatorType;
 	private TreeSet<Printer> predefinedPrinters;
 	private TreeSet<PlasticType> predefinedPlastics;
 	
@@ -29,10 +30,10 @@ public class CalculatorRunner {
 	 * Runs the calculator
 	 */
 	public static void main(String args[]) {
-		System.out.println("Start v2.1.0");
+		System.out.println("Start v2.1.1");
 		CalculatorRunner cr = new CalculatorRunner();
 		
-		//Load predefined printers
+		//Load config
 		System.out.print("Loading Configuration ... ");
 		boolean cSuccess = cr.loadConfig();
 		if (cSuccess) System.out.println("Done");
@@ -108,14 +109,24 @@ public class CalculatorRunner {
 			s.close();
 			throw new IllegalArgumentException("Invalid option entered.");
 		}
-		
-		System.out.print("Enter the calculated length of filament(mm) needed for the print: ");
-		while (!s.hasNextDouble()) {
-			s.next();
-			System.out.print("Invalid Input. Try again. ");
+		//v2.1.1 length vs weight if/else
+		double weight = 0;
+		double length = 0;
+		if (cr.calculatorType.equals("weight")) {
+			System.out.print("Enter the calculated weight(g) needed for the print: ");
+			while (!s.hasNextDouble()) {
+				s.next();
+				System.out.print("Invalid Input.  Try again. ");
+			}
+			weight = s.nextDouble();
+		} else {
+			System.out.print("Enter the calculated length of filament(mm) needed for the print: ");
+			while (!s.hasNextDouble()) {
+				s.next();
+				System.out.print("Invalid Input. Try again. ");
+			}
+			length = s.nextDouble();
 		}
-		double length = s.nextDouble();
-		
 		System.out.print("Enter the print time's hours: ");
 		while (!s.hasNextDouble()) {
 			s.next();
@@ -131,7 +142,13 @@ public class CalculatorRunner {
 		double mins = s.nextDouble();
 		s.close();
 		
-		double estCost = cr.printCalc(indexedPlastics.get(index), length, hrs, mins, printer.getWatts());
+		double estCost;
+		//v2.1.1 length vs weight if/else
+		if (cr.calculatorType.equals("weight")) {
+			estCost = cr.costCalcWeight(indexedPlastics.get(index), weight, hrs, mins, printer.getWatts());
+		} else {
+			estCost = cr.costCalc(indexedPlastics.get(index), length, hrs, mins, printer.getWatts());
+		}
 		double totalPrice = estCost * cr.profitMultiplier + cr.minPrintPrice;
 		
 		System.out.println("\n~" + printer.getName() + " | " + indexedPlastics.get(index).getName() + " Print Cost~");
@@ -159,6 +176,12 @@ public class CalculatorRunner {
 			electricityRate = Double.parseDouble(configInfo.substring(0, configInfo.indexOf(",")));
 			minPrintPrice = Double.parseDouble(configInfo.substring(configInfo.indexOf(",") + 1, configInfo.lastIndexOf(",")));
 			profitMultiplier = Double.parseDouble(configInfo.substring(configInfo.lastIndexOf(",") + 1));
+			
+			//Skips the line containing info on calculations based on weight/length
+			br.readLine();
+			//determines whether to use weight or length calculator
+			calculatorType = br.readLine().toLowerCase();
+			
 			br.close();
 		} catch (IOException x) {
 			System.out.println("Error: " + x.getMessage());
@@ -254,11 +277,28 @@ public class CalculatorRunner {
 	 * @param length the length of filament as reported by the slicer
 	 * @param hrs the amount of hours the print is estimated to take
 	 * @param mins the amount of minutes (minus hours inputted earlier) the print is estimated to take
+	 * @param wattage the amount of wattage the printer uses
+	 * @return the total cost of the print
 	 */
-	public double printCalc(PlasticType p, double length, double hrs, double mins, double wattage) {
+	public double costCalc(PlasticType p, double length, double hrs, double mins, double wattage) {
 		double volume = p.getfilamentDiameter() * length;
 		double totalFilCost = (p.getDensity() / ONE_KILO) * (p.getCostPerKilogram() / ONE_KILO) * volume;
 		double timeCost = (electricityRate / ONE_KILO) * (mins / 60 + hrs) * wattage;
 		return totalFilCost + timeCost;
+	}
+	
+	/**
+	 * Calculates the cost of the print based on weight
+	 * @param p the type of plastic used
+	 * @param weight the weight of filament used
+	 * @param hrs the amount of hours the print is estimated to take
+	 * @param mins the amount of minutes the print is estimated to take
+	 * @param wattage the amount of wattage the printer uses
+	 * @return the total cost of the print
+	 */
+	public double costCalcWeight(PlasticType p, double weight, double hrs, double mins, double wattage) {
+		double plasticCost = p.getCostPerKilogram() * (weight / ONE_KILO);
+		double timeCost = (electricityRate / ONE_KILO) * (mins / 60 + hrs) * wattage;
+		return plasticCost + timeCost;
 	}
 }
